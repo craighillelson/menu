@@ -2,28 +2,15 @@
 
 import pyinputplus as pyip
 
-options = {
-    1: 'option_1.py',
-    2: 'option_2.py',
-    3: 'option_3.py',
-    }
-
-
-def switch_case(argument):
-    """Switch case statement."""
-    options
-    return options.get(argument, 'nothing')
-
+# populate list with available choices
+choices = ['option 1', 'option 2', 'quit']
 
 while True:
-    print('\nMake a selection or press enter to quit')
-    for num, option in options.items():
-        print(num, option)
-    selection = pyip.inputInt('> ', min=1, max=len(options), blank=True)
-    if selection != '':
-        print(switch_case(selection))
-        # replace with code below to call python files
-        # exec(open(switch_case(selection)).read())
+    print('\nPlease select from the options below.')
+    for num, choice in enumerate(choices, 1):
+        print(num, choice)
+    selection = pyip.inputMenu(choices, prompt='> ', blank=True, numbered=True)
+    if selection != 'quit':
+        print(f'You selected {selection}')
     else:
-        print('\nSession complete.\n')
         break

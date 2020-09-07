@@ -2,15 +2,18 @@
 
 import pyinputplus as pyip
 
-# populate list with available choices
-choices = ['option 1', 'option 2', 'quit']
+options_map = {
+    1: ["option_a", "option_a.py",],
+    2: ["option_b", "option_b.py",],
+    3: ["exit", "",],
+}
 
 while True:
-    print('\nPlease select from the options below.')
-    for num, choice in enumerate(choices, 1):
-        print(num, choice)
-    selection = pyip.inputMenu(choices, prompt='> ', blank=True, numbered=True)
-    if selection != 'quit':
-        print(f'You selected {selection}')
+    print("\nPlease select from an option below.")
+    for num, options in options_map.items():
+        print(num, options[0])
+    response = pyip.inputInt("> ", min=1, max=len(options_map))
+    if response != 3:
+        print(options_map[response][1])
     else:
         break

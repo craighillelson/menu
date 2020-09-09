@@ -8,12 +8,14 @@ options_map = {
     3: ["exit", "",],
 }
 
+num_options = len(options_map)
+
 while True:
     print("\nPlease select from an option below.")
     for num, options in options_map.items():
         print(num, options[0])
-    response = pyip.inputInt("> ", min=1, max=len(options_map))
-    if response != 3:
+    response = pyip.inputInt("> ", min=1, max=num_options)
+    if response != num_options:
         print(options_map[response][1])
     else:
         break

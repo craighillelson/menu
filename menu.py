@@ -1,21 +1,28 @@
-"""Provide user with a list of options."""
+"""Present user with options. Call function based on user selection."""
 
 import pyinputplus as pyip
+import functions
 
-options_map = {
-    1: ["option_a", "option_a.py",],
-    2: ["option_b", "option_b.py",],
-    3: ["exit", "",],
-}
+OPTIONS = (
+    "func_a",
+    "func_b",
+    "exit"
+)
 
-num_options = len(options_map)
+OPTIONS_MAP = {}
+
+for num, option in enumerate(OPTIONS, 1):
+    OPTIONS_MAP[num] = option
 
 while True:
-    print("\nPlease select from an option below.")
-    for num, options in options_map.items():
-        print(num, options[0])
-    response = pyip.inputInt("> ", min=1, max=num_options)
-    if response != num_options:
-        print(options_map[response][1])
+    print("\n")
+    for num, option in OPTIONS_MAP.items():
+        print(num, option)
+    user_choice = pyip.inputInt("\nmake a selection\n> ")
+    if user_choice != len(OPTIONS_MAP):
+        user_selected_func = OPTIONS_MAP[user_choice]
+        method_to_call = getattr(functions, user_selected_func)
+        method_to_call()
     else:
+        print("\nsession complete\n")
         break

@@ -10,6 +10,7 @@ OPTIONS = (
 )
 
 OPTIONS_MAP = {}
+NUM_OPTIONS = len(OPTIONS)
 
 for num, option in enumerate(OPTIONS, 1):
     OPTIONS_MAP[num] = option
@@ -17,9 +18,9 @@ for num, option in enumerate(OPTIONS, 1):
 while True:
     print("\n")
     for num, option in OPTIONS_MAP.items():
-        print(num, option)
-    user_choice = pyip.inputInt("\nmake a selection\n> ")
-    if user_choice != len(OPTIONS_MAP):
+        print(f"{num}. {option}")
+    user_choice = pyip.inputInt("\nmake a selection\n> ", max=NUM_OPTIONS)
+    if user_choice != NUM_OPTIONS:
         user_selected_func = OPTIONS_MAP[user_choice]
         method_to_call = getattr(functions, user_selected_func)
         method_to_call()
